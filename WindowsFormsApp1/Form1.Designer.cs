@@ -42,12 +42,12 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -153,28 +153,28 @@
             this.toolStripMenuItem2,
             this.ToolStripMenuItem4});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(111, 70);
-            // 
-            // ToolStripMenuItem4
-            // 
-            this.ToolStripMenuItem4.Name = "ToolStripMenuItem4";
-            this.ToolStripMenuItem4.Size = new System.Drawing.Size(110, 22);
-            this.ToolStripMenuItem4.Text = "終了";
-            this.ToolStripMenuItem4.Click += new System.EventHandler(this.ToolStripMenuItem4_Click);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 92);
             // 
             // ToolStripMenuItem5
             // 
             this.ToolStripMenuItem5.Name = "ToolStripMenuItem5";
-            this.ToolStripMenuItem5.Size = new System.Drawing.Size(110, 22);
+            this.ToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItem5.Text = "表示";
             this.ToolStripMenuItem5.Click += new System.EventHandler(this.ToolStripMenuItem5_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(110, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "非表示";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.ToolStripMenuItem2_Click_1);
+            // 
+            // ToolStripMenuItem4
+            // 
+            this.ToolStripMenuItem4.Name = "ToolStripMenuItem4";
+            this.ToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem4.Text = "終了";
+            this.ToolStripMenuItem4.Click += new System.EventHandler(this.ToolStripMenuItem4_Click);
             // 
             // contextMenuStrip1
             // 
@@ -184,19 +184,19 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(111, 48);
             // 
-            // ToolStripMenuItem1
-            // 
-            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.ToolStripMenuItem1.Text = "終了";
-            this.ToolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1_Click);
-            // 
             // ToolStripMenuItem3
             // 
             this.ToolStripMenuItem3.Name = "ToolStripMenuItem3";
-            this.ToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem3.Size = new System.Drawing.Size(110, 22);
             this.ToolStripMenuItem3.Text = "非表示";
             this.ToolStripMenuItem3.Click += new System.EventHandler(this.ToolStripMenuItem3_Click);
+            // 
+            // ToolStripMenuItem1
+            // 
+            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
+            this.ToolStripMenuItem1.Text = "終了";
+            this.ToolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1_Click);
             // 
             // label7
             // 
