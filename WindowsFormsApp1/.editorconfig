@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0626: メソッド、演算子、またはアクセサーは external に設定されていて属性を持っていません
+dotnet_diagnostic.CS0626.severity = none
