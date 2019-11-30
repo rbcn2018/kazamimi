@@ -64,23 +64,19 @@ namespace WindowsFormsApp1
                 IntPtr hWnd = hWnd2;
                 if (MouseButtons == MouseButtons.Left)
                 {
-                    //左クリック
                     if (ctl_stat)
                     {
-                        //label9.Text = "top";
                         //最前面固定
                         SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
                     }
                     else if (alt_stat)
                     {
-                        //label9.Text = "under";
                         //最前面解除
                         SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
                     }
                 }
                 else if (MouseButtons == MouseButtons.Middle)
                 {
-                    //中クリック
                     if (!ctl_stat & !alt_stat & !sft_stat)
                     {
                         ts1 = DateTime.Now - startDt;
@@ -108,23 +104,19 @@ namespace WindowsFormsApp1
                     //サクラエディタ
                     if (MouseButtons == MouseButtons.Left)
                     {
-                        //左クリック
                         if (ctl_stat)
                         {
-                            //label9.Text = "top";
                             //最前面固定
                             SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
                         }
                         else if (alt_stat)
                         {
-                            //label9.Text = "under";
                             //最前面解除
                             SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
                         }
                     }
                     else if (MouseButtons == MouseButtons.Middle)
                     {
-                        //中クリック
                         if (alt_stat)
                         {
                             //閉じる
@@ -134,27 +126,24 @@ namespace WindowsFormsApp1
                 }
                 else if (exe.EndsWith("chrome.exe") | exe.EndsWith("firefox.exe") | exe.EndsWith("Code.exe"))
                 {
-                    label9.Text = "vscode";
+                    //label9.Text = "vscode";
                     //chrome,firefox,vscode
                     if (MouseButtons == MouseButtons.Left)
                     {
                         //左クリック
                         if (ctl_stat)
                         {
-                            //label9.Text = "top";
                             //最前面固定
                             SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
                         }
                         else if (alt_stat)
                         {
-                            //label9.Text = "under";
                             //最前面解除
                             SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
                         }
                     }
                     else if (MouseButtons == MouseButtons.Middle)
                     {
-                        //中クリック
                         if (ctl_stat & alt_stat & !sft_stat)
                         {
                             //閉じる
@@ -184,7 +173,6 @@ namespace WindowsFormsApp1
                     //maya メインウィンドウ以外
                     if (MouseButtons == MouseButtons.Middle)
                     {
-                        //中クリック
                         if (ctl_stat)
                         {
                             //閉じる
@@ -197,7 +185,6 @@ namespace WindowsFormsApp1
                     //motionbuilder
                     if (MouseButtons == MouseButtons.Middle)
                     {
-                        //中クリック
                         if (ctl_stat)
                         {
                             //閉じる
@@ -211,7 +198,6 @@ namespace WindowsFormsApp1
                     //Screenpresso
                     if (MouseButtons == MouseButtons.Middle)
                     {
-                        //中クリック
                         if (!ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
@@ -274,7 +260,6 @@ namespace WindowsFormsApp1
             ShowInTaskbar = false;
             Activate();
             showstat = true;
-            //label9.Text = "open";
         }
 
         public const uint WM_CLOSE = 0x10;
@@ -287,7 +272,6 @@ namespace WindowsFormsApp1
         //private const int SW_SHOWNORMAL = 1;
         private const int SW_SHOWMINIMIZED = 2;
         //private const int SW_SHOWMAXIMIZED = 3;
-
 
 
         private static readonly string[] wnd_lst_2 = { "kazamimi.exe", "xnview.exe", "slack.exe", "p4v.exe", "Everything.exe", "WinMergeU.exe" };
@@ -388,7 +372,7 @@ namespace WindowsFormsApp1
             }
             else if (cls == "" & title.StartsWith("NetUIHWND") & exe.EndsWith("EXCEL.EXE"))
             {
-                //EXCEL
+                //エクセル
                 hWnd2 = hWnd;
             }
             winstat = true;
