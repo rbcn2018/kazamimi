@@ -117,10 +117,15 @@ namespace WindowsFormsApp1
                     }
                     else if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (alt_stat)
+                        if (!ctl_stat & alt_stat)
                         {
                             //閉じる
                             SendKeys.Send("%({F4})");
+                        }
+                        else if (ctl_stat & alt_stat)
+                        {
+                            //最小化
+                            ShowWindowAsync(hWnd, SW_SHOWMINIMIZED);
                         }
                     }
                 }
