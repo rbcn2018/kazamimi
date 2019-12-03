@@ -57,7 +57,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>kazamimi2.ico</ApplicationIcon>
+    <ApplicationIcon>kuma2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -123,6 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="kazamimi2.ico" />
+    <Content Include="kazamimi6.ico" />
+    <Content Include="kuma2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
