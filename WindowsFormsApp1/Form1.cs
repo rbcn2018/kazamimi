@@ -12,6 +12,9 @@ namespace WindowsFormsApp1
         [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern IntPtr WindowFromPoint(Point point);
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
@@ -48,11 +51,11 @@ namespace WindowsFormsApp1
         private TimeSpan ts1;
 
         private static readonly Timer timer = new Timer() { Interval = 100 };
-        
+
         private static bool showstat = false;
         private static bool winstat = true;
 
-        public string SettingUnderWindow(IntPtr hWnd2, IntPtr hWnd3, string exe)
+        public string SettingUnderWindow(IntPtr hWnd2, IntPtr hWnd3, string exe, string title)
         {
             //label9.Text = hWnd3.ToString();
             bool ctl_stat = (ModifierKeys & Keys.Control) == Keys.Control;
@@ -64,12 +67,12 @@ namespace WindowsFormsApp1
                 IntPtr hWnd = hWnd2;
                 if (MouseButtons == MouseButtons.Left)
                 {
-                    if (ctl_stat)
+                    if (ctl_stat & !alt_stat & !sft_stat)
                     {
                         //最前面固定
                         SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
                     }
-                    else if (alt_stat)
+                    else if (!ctl_stat & alt_stat & !sft_stat)
                     {
                         //最前面解除
                         SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
@@ -88,7 +91,7 @@ namespace WindowsFormsApp1
                             startDt = DateTime.Now;
                         }
                     }
-                    else if (ctl_stat)
+                    else if (ctl_stat & !alt_stat & !sft_stat)
                     {
                         //最小化
                         ShowWindowAsync(hWnd, SW_SHOWMINIMIZED);
@@ -98,66 +101,67 @@ namespace WindowsFormsApp1
             else if (hWnd3 != IntPtr.Zero)
             {
                 //対応外ウィンドウ
-                IntPtr hWnd = hWnd3;
                 if (exe.EndsWith("sakura.exe"))
                 {
                     //サクラエディタ
                     if (MouseButtons == MouseButtons.Left)
                     {
-                        if (ctl_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //最前面固定
-                            SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                            SetWindowPos(hWnd3, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
                         }
-                        else if (alt_stat)
+                        else if (!ctl_stat & alt_stat & !sft_stat)
                         {
                             //最前面解除
-                            SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
+                            SetWindowPos(hWnd3, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
                         }
                     }
                     else if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (!ctl_stat & alt_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
                             SendKeys.Send("%({F4})");
                         }
-                        else if (ctl_stat & alt_stat)
+                        else if (ctl_stat & alt_stat & !sft_stat)
                         {
                             //最小化
-                            ShowWindowAsync(hWnd, SW_SHOWMINIMIZED);
+                            ShowWindowAsync(hWnd3, SW_SHOWMINIMIZED);
                         }
                     }
                 }
-                else if (exe.EndsWith("chrome.exe") | exe.EndsWith("firefox.exe") | exe.EndsWith("Code.exe"))
+                else if (exe.EndsWith("Code.exe") | exe.EndsWith("chrome.exe") | exe.EndsWith("firefox.exe"))
                 {
+                    //label9.Text = hWnd3.ToString();
+                    //label10.Text = GetForegroundWindow().ToString();
+                    // Vscode, Chrome, Firefox
                     //label9.Text = "vscode";
-                    //chrome,firefox,vscode
                     if (MouseButtons == MouseButtons.Left)
                     {
                         //左クリック
-                        if (ctl_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //最前面固定
-                            SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                            SetWindowPos(hWnd3, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
                         }
-                        else if (alt_stat)
+                        else if (!ctl_stat & alt_stat & !sft_stat)
                         {
                             //最前面解除
-                            SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
+                            SetWindowPos(hWnd3, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
                         }
                     }
                     else if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (ctl_stat & alt_stat & !sft_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
-                            SendMessage(hWnd, WM_CLOSE, 0, 0);
+                            SendMessage(hWnd3, WM_CLOSE, 0, 0);
                         }
-                        else if (ctl_stat & alt_stat & sft_stat)
+                        else if (ctl_stat & alt_stat & !sft_stat)
                         {
                             //最小化
-                            ShowWindowAsync(hWnd, SW_SHOWMINIMIZED);
+                            ShowWindowAsync(hWnd3, SW_SHOWMINIMIZED);
                         }
                     }
                 }
@@ -166,7 +170,7 @@ namespace WindowsFormsApp1
                     //エクスプローラ ファイルリスト部分
                     if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (alt_stat)
+                        if (!ctl_stat & alt_stat & !sft_stat)
                         {
                             //1つ上の階層に移動
                             SendKeys.Send("{UP}");
@@ -178,22 +182,43 @@ namespace WindowsFormsApp1
                     //maya メインウィンドウ以外
                     if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (ctl_stat)
+                        if(title != "mayaLayoutInternalWidgetWindow")
                         {
-                            //閉じる
-                            SendMessage(hWnd, WM_CLOSE, 0, 0);
+                            if (ctl_stat & !alt_stat & !sft_stat)
+                            {
+                                //閉じる
+                                SendMessage(hWnd3, WM_CLOSE, 0, 0);
+                            }
                         }
                     }
                 }
                 else if (exe.EndsWith("motionbuilder.exe"))
                 {
                     //motionbuilder
-                    if (MouseButtons == MouseButtons.Middle)
+                    if (MouseButtons == MouseButtons.Left)
                     {
-                        if (ctl_stat)
+                        if (ctl_stat & alt_stat & !sft_stat)
+                        {
+                            //最前面固定
+                            SetWindowPos(hWnd3, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                        }
+                        else if (ctl_stat & alt_stat & sft_stat)
+                        {
+                            //最前面解除
+                            SetWindowPos(hWnd3, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
+                        }
+                    }
+                    else if (MouseButtons == MouseButtons.Middle)
+                    {
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
-                            SendMessage(hWnd, WM_CLOSE, 0, 0);
+                            SendMessage(hWnd3, WM_CLOSE, 0, 0);
+                        }
+                        else if (ctl_stat & alt_stat & !sft_stat)
+                        {
+                            //最小化
+                            ShowWindowAsync(hWnd3, SW_SHOWMINIMIZED);
                         }
                     }
                 }
@@ -243,13 +268,13 @@ namespace WindowsFormsApp1
             timer.Tick += new EventHandler(CheckTimer);
             timer.Enabled = true;
         }
-        
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             notifyIcon1.Visible = false;
             timer.Enabled = false;
         }
-        
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)
@@ -283,7 +308,7 @@ namespace WindowsFormsApp1
         private static readonly string[] wnd_lst_3 = { "chrome.exe", "firefox.exe", "sakura.exe", "Screenpresso.exe", "motionbuilder.exe"};
 
         private void CheckTimer(object sender, EventArgs e)
-        {            
+        {
             bool sft_stat = (ModifierKeys & Keys.Shift) == Keys.Shift;
 
             //ウィンドウハンドル
@@ -333,7 +358,7 @@ namespace WindowsFormsApp1
             if (exe.EndsWith("explorer.exe"))
             {
                 //エクスプローラ
-                if (cls == "CabinetWClass") 
+                if (cls == "CabinetWClass")
                 {
                     hWnd2 = hWnd;
                 }
@@ -350,7 +375,8 @@ namespace WindowsFormsApp1
             else if (exe.Contains("Microsoft VS Code") & exe.EndsWith("Code.exe"))
             {
                 //vscode
-                hWnd3 = hWnd;
+                hWnd3 = GetForegroundWindow();
+                //hWnd3 = hWnd;
             }
             else if (cls == "Qt5QWindowIcon" & exe.EndsWith("maya.exe"))
             {
@@ -362,7 +388,8 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    hWnd3 = hWnd;
+                    hWnd3 = GetForegroundWindow();
+                    //hWnd3 = hWnd;
                 }
             }
             else if (cls == "Notepad" & exe.EndsWith("notepad.exe"))
@@ -396,7 +423,9 @@ namespace WindowsFormsApp1
                 {
                     if (exe.EndsWith(wnd_3))
                     {
-                        hWnd3 = hWnd;
+                        //IntPtr hWnd = GetForegroundWindow();
+                        hWnd3 = GetForegroundWindow();
+                        //hWnd3 = hWnd;
                         break;
                     }
                 }
@@ -404,7 +433,7 @@ namespace WindowsFormsApp1
 
             if (hWnd2 != IntPtr.Zero | hWnd3 != IntPtr.Zero)
             {
-                SettingUnderWindow(hWnd2, hWnd3, exe);
+                SettingUnderWindow(hWnd2, hWnd3, exe, title);
             }
         }
 
