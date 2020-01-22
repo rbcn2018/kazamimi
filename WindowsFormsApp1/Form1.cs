@@ -179,7 +179,7 @@ namespace WindowsFormsApp1
                 }
                 else if (exe.EndsWith("maya.exe"))
                 {
-                    //maya メインウィンドウ以外
+                    //Maya メインウィンドウ以外
                     if (MouseButtons == MouseButtons.Middle)
                     {
                         if(title != "mayaLayoutInternalWidgetWindow")
@@ -194,7 +194,7 @@ namespace WindowsFormsApp1
                 }
                 else if (exe.EndsWith("motionbuilder.exe"))
                 {
-                    //motionbuilder
+                    //Motionbuilder
                     if (MouseButtons == MouseButtons.Left)
                     {
                         if (ctl_stat & alt_stat & !sft_stat)
@@ -240,6 +240,7 @@ namespace WindowsFormsApp1
             }
             return "";
         }
+
 
 
         public static string QueryFullProcessImageName(IntPtr hProcess)
@@ -404,7 +405,7 @@ namespace WindowsFormsApp1
             }
             else if (cls == "" & title.StartsWith("NetUIHWND") & exe.EndsWith("EXCEL.EXE"))
             {
-                //エクセル
+                // エクセル
                 hWnd2 = hWnd;
             }
             winstat = true;
