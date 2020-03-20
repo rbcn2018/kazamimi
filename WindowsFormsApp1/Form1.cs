@@ -120,7 +120,7 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-                else if (exe.EndsWith("Code.exe") | exe.EndsWith("chrome.exe") | exe.EndsWith("firefox.exe"))
+                else if (exe.EndsWith("Code.exe") | exe.EndsWith("chrome.exe") | exe.EndsWith("firefox.exe") | exe.EndsWith("motionbuilder.exe"))
                 {
                     //label9.Text = hWnd3.ToString();
                     //label10.Text = GetForegroundWindow().ToString();
