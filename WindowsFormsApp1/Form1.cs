@@ -55,7 +55,27 @@ namespace WindowsFormsApp1
         private static bool showstat = false;
         private static bool winstat = true;
 
-        public string SettingUnderWindow(IntPtr hWnd2, IntPtr hWnd3, string exe, string title)
+        public string SettingUnderWindow2(IntPtr hWnd)
+        {
+            bool ctl_stat = (ModifierKeys & Keys.Control) == Keys.Control;
+            bool alt_stat = (ModifierKeys & Keys.Alt) == Keys.Alt;
+            bool sft_stat = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            //対応可能ウィンドウ
+            if (ctl_stat & alt_stat & sft_stat)
+                if (MouseButtons == MouseButtons.Left)
+                {
+                    //最前面固定
+                    SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                }
+                else if (MouseButtons == MouseButtons.Middle)
+                {
+                    //最前面解除
+                    SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
+                }
+            return "";
+        }
+
+    public string SettingUnderWindow(IntPtr hWnd2, IntPtr hWnd3, string exe, string title)
         {
             //label9.Text = hWnd3.ToString();
             bool ctl_stat = (ModifierKeys & Keys.Control) == Keys.Control;
@@ -435,6 +455,10 @@ namespace WindowsFormsApp1
             if (hWnd2 != IntPtr.Zero | hWnd3 != IntPtr.Zero)
             {
                 SettingUnderWindow(hWnd2, hWnd3, exe, title);
+            }
+            else
+            {
+                SettingUnderWindow2(hWnd);
             }
         }
 
