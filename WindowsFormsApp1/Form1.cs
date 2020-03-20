@@ -55,13 +55,17 @@ namespace WindowsFormsApp1
         private static bool showstat = false;
         private static bool winstat = true;
 
-        public string SettingUnderWindow2(IntPtr hWnd)
+
+    public string SettingUnderWindow(IntPtr hWnd, IntPtr hWnd2, IntPtr hWnd3, string exe, string title)
         {
+            //label9.Text = hWnd3.ToString();
             bool ctl_stat = (ModifierKeys & Keys.Control) == Keys.Control;
             bool alt_stat = (ModifierKeys & Keys.Alt) == Keys.Alt;
             bool sft_stat = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
             //対応可能ウィンドウ
             if (ctl_stat & alt_stat & sft_stat)
+            {
                 if (MouseButtons == MouseButtons.Left)
                 {
                     //最前面固定
@@ -72,49 +76,27 @@ namespace WindowsFormsApp1
                     //最前面解除
                     SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
                 }
-            return "";
-        }
-
-    public string SettingUnderWindow(IntPtr hWnd2, IntPtr hWnd3, string exe, string title)
-        {
-            //label9.Text = hWnd3.ToString();
-            bool ctl_stat = (ModifierKeys & Keys.Control) == Keys.Control;
-            bool alt_stat = (ModifierKeys & Keys.Alt) == Keys.Alt;
-            bool sft_stat = (ModifierKeys & Keys.Shift) == Keys.Shift;
-            if (hWnd2 != IntPtr.Zero)
+            }
+            else if (hWnd2 != IntPtr.Zero)
             {
                 //対応可能ウィンドウ
-                IntPtr hWnd = hWnd2;
-                if (MouseButtons == MouseButtons.Left)
+                if (MouseButtons == MouseButtons.Middle)
                 {
-                    if (ctl_stat & alt_stat & sft_stat)
-                    {
-                        //最前面固定
-                        SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
-                    }
-                }
-                else if (MouseButtons == MouseButtons.Middle)
-                {
-                    if (ctl_stat & alt_stat & sft_stat)
-                    {
-                        //最前面解除
-                        SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
-                    }
-                    else if (!ctl_stat & !alt_stat & !sft_stat)
+                    if (!ctl_stat & !alt_stat & !sft_stat)
                     {
                         ts1 = DateTime.Now - startDt;
                         //label9.Text = ts1.TotalSeconds.ToString();
                         if (ts1.TotalSeconds > 0.3)
                         {
                             //閉じる
-                            SendMessage(hWnd, WM_CLOSE, 0, 0);
+                            SendMessage(hWnd2, WM_CLOSE, 0, 0);
                             startDt = DateTime.Now;
                         }
                     }
                     else if (ctl_stat & !alt_stat & !sft_stat)
                     {
                         //最小化
-                        ShowWindowAsync(hWnd, SW_SHOWMINIMIZED);
+                        ShowWindowAsync(hWnd2, SW_SHOWMINIMIZED);
                     }
                 }
             }
@@ -124,22 +106,9 @@ namespace WindowsFormsApp1
                 if (exe.EndsWith("sakura.exe"))
                 {
                     //サクラエディタ
-                    if (MouseButtons == MouseButtons.Left)
+                    if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (ctl_stat & alt_stat & sft_stat)
-                        {
-                            //最前面固定
-                            SetWindowPos(hWnd3, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
-                        }
-                    }
-                    else if (MouseButtons == MouseButtons.Middle)
-                    {
-                        if (ctl_stat & alt_stat & sft_stat)
-                        {
-                            //最前面解除
-                            SetWindowPos(hWnd3, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
-                        }
-                        else if (ctl_stat & !alt_stat & !sft_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
                             SendKeys.Send("%({F4})");
@@ -157,23 +126,9 @@ namespace WindowsFormsApp1
                     //label10.Text = GetForegroundWindow().ToString();
                     // Vscode, Chrome, Firefox
                     //label9.Text = "vscode";
-                    if (MouseButtons == MouseButtons.Left)
+                    if (MouseButtons == MouseButtons.Middle)
                     {
-                        //左クリック
-                        if (ctl_stat & alt_stat & sft_stat)
-                        {
-                            //最前面固定
-                            SetWindowPos(hWnd3, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
-                        }
-                    }
-                    else if (MouseButtons == MouseButtons.Middle)
-                    {
-                        if (ctl_stat & alt_stat & sft_stat)
-                        {
-                            //最前面解除
-                            SetWindowPos(hWnd3, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
-                        }
-                        else if (ctl_stat & !alt_stat & !sft_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
                             SendMessage(hWnd3, WM_CLOSE, 0, 0);
@@ -215,22 +170,9 @@ namespace WindowsFormsApp1
                 else if (exe.EndsWith("motionbuilder.exe"))
                 {
                     //Motionbuilder
-                    if (MouseButtons == MouseButtons.Left)
+                    if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (ctl_stat & alt_stat & sft_stat)
-                        {
-                            //最前面固定
-                            SetWindowPos(hWnd3, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
-                        }
-                    }
-                    else if (MouseButtons == MouseButtons.Middle)
-                    {
-                        if (ctl_stat & alt_stat & sft_stat)
-                        {
-                            //最前面解除
-                            SetWindowPos(hWnd3, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE);
-                        }
-                        else if (ctl_stat & !alt_stat & !sft_stat)
+                        if (ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
                             SendMessage(hWnd3, WM_CLOSE, 0, 0);
@@ -451,15 +393,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-
-            if (hWnd2 != IntPtr.Zero | hWnd3 != IntPtr.Zero)
-            {
-                SettingUnderWindow(hWnd2, hWnd3, exe, title);
-            }
-            else
-            {
-                SettingUnderWindow2(hWnd);
-            }
+            SettingUnderWindow(hWnd, hWnd2, hWnd3, exe, title);
         }
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
