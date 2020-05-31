@@ -120,6 +120,19 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
+                if (exe.EndsWith("iexplore.exe"))
+                {
+                    //IE
+                    if (MouseButtons == MouseButtons.Middle)
+                    {
+                        if (ctl_stat & !alt_stat & !sft_stat)
+                        {
+                            //閉じる
+                            //SendKeys.Send("%({F4})");
+                            SendMessage(hWnd3, WM_CLOSE, 0, 0);
+                        }
+                    }
+                }
                 else if (exe.EndsWith("Code.exe") | exe.EndsWith("chrome.exe") | exe.EndsWith("firefox.exe") | exe.EndsWith("motionbuilder.exe"))
                 {
                     //label9.Text = hWnd3.ToString();
@@ -198,7 +211,6 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-
             }
             return "";
         }
@@ -268,7 +280,7 @@ namespace WindowsFormsApp1
 
 
         private static readonly string[] wnd_lst_2 = { "kazamimi.exe", "xnview.exe", "slack.exe", "p4v.exe", "Everything.exe", "WinMergeU.exe" };
-        private static readonly string[] wnd_lst_3 = { "chrome.exe", "firefox.exe", "sakura.exe", "Screenpresso.exe", "motionbuilder.exe"};
+        private static readonly string[] wnd_lst_3 = { "chrome.exe", "firefox.exe", "sakura.exe", "iexplore.exe", "Screenpresso.exe", "motionbuilder.exe"};
 
         private void CheckTimer(object sender, EventArgs e)
         {
