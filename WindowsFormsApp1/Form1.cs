@@ -125,7 +125,7 @@ namespace WindowsFormsApp1
                     //IE
                     if (MouseButtons == MouseButtons.Middle)
                     {
-                        if (ctl_stat & !alt_stat & !sft_stat)
+                        if (!ctl_stat & !alt_stat & !sft_stat)
                         {
                             //閉じる
                             //SendKeys.Send("%({F4})");
