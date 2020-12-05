@@ -172,7 +172,7 @@ namespace WindowsFormsApp1
                     {
                         if(title != "mayaLayoutInternalWidgetWindow")
                         {
-                            if (ctl_stat & !alt_stat & !sft_stat)
+                            if (ctl_stat & alt_stat & sft_stat)
                             {
                                 //閉じる
                                 SendMessage(hWnd3, WM_CLOSE, 0, 0);
