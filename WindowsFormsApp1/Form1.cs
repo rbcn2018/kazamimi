@@ -353,6 +353,11 @@ namespace WindowsFormsApp1
                 hWnd3 = GetForegroundWindow();
                 //hWnd3 = hWnd;
             }
+            else if (cls.Contains("Qt5152QWindowIcon") & exe.EndsWith("maya.exe"))
+            {
+                //メインウィンドウ
+                hWnd2 = hWnd;
+            }
             else if (cls == "Qt5QWindowIcon" & exe.EndsWith("maya.exe"))
             {
                 //maya2019
@@ -365,15 +370,6 @@ namespace WindowsFormsApp1
                 {
                     hWnd3 = GetForegroundWindow();
                     //hWnd3 = hWnd;
-                }
-            }
-            else if (cls == "Qt5152QWindowIcon" & exe.EndsWith("maya.exe"))
-            {
-                //maya2022
-                if (title.Contains("Autodesk Maya 2022"))
-                {
-                    //メインウィンドウ
-                    hWnd2 = hWnd;
                 }
             }
             else if (cls == "Notepad" & exe.EndsWith("notepad.exe"))
