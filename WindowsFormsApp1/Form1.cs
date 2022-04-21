@@ -370,7 +370,7 @@ namespace WindowsFormsApp1
             else if (cls == "Qt5152QWindowIcon" & exe.EndsWith("maya.exe"))
             {
                 //maya2022
-                if (title.Contains("Autodesk MAYA 2022"))
+                if (title.Contains("2022"))
                 {
                     //メインウィンドウ
                     hWnd2 = hWnd;
