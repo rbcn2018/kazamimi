@@ -355,8 +355,8 @@ namespace WindowsFormsApp1
             }
             else if (cls == "Qt5QWindowIcon" & exe.EndsWith("maya.exe"))
             {
-                //maya
-                if (title.StartsWith("Autodesk Maya"))
+                //maya2019
+                if (title.StartsWith("Autodesk Maya 2019"))
                 {
                     //メインウィンドウ
                     hWnd2 = hWnd;
@@ -367,9 +367,23 @@ namespace WindowsFormsApp1
                     //hWnd3 = hWnd;
                 }
             }
+            else if (cls == "Qt5152QWindowIcon" & exe.EndsWith("maya.exe"))
+            {
+                //maya2022
+                if (title.StartsWith("Autodesk MAYA 2022"))
+                {
+                    //メインウィンドウ
+                    hWnd2 = hWnd;
+                }
+            }
             else if (cls == "Notepad" & exe.EndsWith("notepad.exe"))
             {
                 //メモ帳
+                hWnd2 = hWnd;
+            }
+            else if (cls == "ConsoleWindowClass" & exe.EndsWith("cmd.exe"))
+            {
+                //コマンドプロンプト
                 hWnd2 = hWnd;
             }
             else if (title.StartsWith("DF - ") & exe.EndsWith("DF.exe"))
