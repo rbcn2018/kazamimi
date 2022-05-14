@@ -279,7 +279,7 @@ namespace WindowsFormsApp1
         //private const int SW_SHOWMAXIMIZED = 3;
 
 
-        private static readonly string[] wnd_lst_2 = { "kazamimi.exe", "xnview.exe", "slack.exe", "p4v.exe", "Everything.exe", "WinMergeU.exe" };
+        private static readonly string[] wnd_lst_2 = { "kazamimi.exe", "xnview.exe", "p4v.exe", "Everything.exe", "WinMergeU.exe" };
         private static readonly string[] wnd_lst_3 = { "chrome.exe", "firefox.exe", "sakura.exe", "iexplore.exe", "Screenpresso.exe", "motionbuilder.exe"};
 
         private void CheckTimer(object sender, EventArgs e)
