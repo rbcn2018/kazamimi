@@ -172,7 +172,7 @@ namespace WindowsFormsApp1
                     {
                         if(title != "mayaLayoutInternalWidgetWindow")
                         {
-                            if (ctl_stat & alt_stat & sft_stat)
+                            if (ctl_stat & !alt_stat & !sft_stat)
                             {
                                 //閉じる
                                 SendMessage(hWnd3, WM_CLOSE, 0, 0);
@@ -279,7 +279,7 @@ namespace WindowsFormsApp1
         //private const int SW_SHOWMAXIMIZED = 3;
 
 
-        private static readonly string[] wnd_lst_2 = { "kazamimi.exe", "xnview.exe", "p4v.exe", "Everything.exe", "WinMergeU.exe" };
+        private static readonly string[] wnd_lst_2 = { "kazamimi.exe", "xnview.exe", "slack.exe", "p4v.exe", "Everything.exe", "WinMergeU.exe" };
         private static readonly string[] wnd_lst_3 = { "chrome.exe", "firefox.exe", "sakura.exe", "iexplore.exe", "Screenpresso.exe", "motionbuilder.exe"};
 
         private void CheckTimer(object sender, EventArgs e)
@@ -353,19 +353,10 @@ namespace WindowsFormsApp1
                 hWnd3 = GetForegroundWindow();
                 //hWnd3 = hWnd;
             }
-            else if (cls.Contains("Qt5152QWindowIcon") & exe.EndsWith("maya.exe"))
-            {
-                //maya2022
-                if (title.Contains("2022"))
-                {
-                    //メインウィンドウ
-                    hWnd2 = hWnd;
-                }
-            }
             else if (cls == "Qt5QWindowIcon" & exe.EndsWith("maya.exe"))
             {
-                //maya2019
-                if (title.StartsWith("Autodesk Maya 2019"))
+                //maya
+                if (title.StartsWith("Autodesk Maya"))
                 {
                     //メインウィンドウ
                     hWnd2 = hWnd;
@@ -379,11 +370,6 @@ namespace WindowsFormsApp1
             else if (cls == "Notepad" & exe.EndsWith("notepad.exe"))
             {
                 //メモ帳
-                hWnd2 = hWnd;
-            }
-            else if (cls == "ConsoleWindowClass" & exe.EndsWith("cmd.exe"))
-            {
-                //コマンドプロンプト
                 hWnd2 = hWnd;
             }
             else if (title.StartsWith("DF - ") & exe.EndsWith("DF.exe"))
