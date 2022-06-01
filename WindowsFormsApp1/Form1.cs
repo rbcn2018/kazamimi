@@ -165,21 +165,6 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-                else if (exe.EndsWith("maya.exe"))
-                {
-                    //Maya メインウィンドウ以外
-                    if (MouseButtons == MouseButtons.Middle)
-                    {
-                        if(title != "mayaLayoutInternalWidgetWindow")
-                        {
-                            if (ctl_stat & !alt_stat & !sft_stat)
-                            {
-                                //閉じる
-                                SendMessage(hWnd3, WM_CLOSE, 0, 0);
-                            }
-                        }
-                    }
-                }
                 else if (exe.EndsWith("motionbuilder.exe"))
                 {
                     //Motionbuilder
@@ -353,19 +338,10 @@ namespace WindowsFormsApp1
                 hWnd3 = GetForegroundWindow();
                 //hWnd3 = hWnd;
             }
-            else if (cls == "Qt5QWindowIcon" & exe.EndsWith("maya.exe"))
+            else if (title.Contains("Autodesk Maya") & exe.EndsWith("maya.exe"))
             {
-                //maya
-                if (title.StartsWith("Autodesk Maya"))
-                {
-                    //メインウィンドウ
-                    hWnd2 = hWnd;
-                }
-                else
-                {
-                    hWnd3 = GetForegroundWindow();
-                    //hWnd3 = hWnd;
-                }
+                //maya メインウィンドウ
+                hWnd2 = hWnd;
             }
             else if (cls == "Notepad" & exe.EndsWith("notepad.exe"))
             {
