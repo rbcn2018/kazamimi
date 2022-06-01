@@ -165,21 +165,6 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-                else if (exe.EndsWith("maya.exe"))
-                {
-                    //Maya メインウィンドウ以外
-                    if (MouseButtons == MouseButtons.Middle)
-                    {
-                        if(title != "mayaLayoutInternalWidgetWindow")
-                        {
-                            if (ctl_stat & alt_stat & sft_stat)
-                            {
-                                //閉じる
-                                SendMessage(hWnd3, WM_CLOSE, 0, 0);
-                            }
-                        }
-                    }
-                }
                 else if (exe.EndsWith("motionbuilder.exe"))
                 {
                     //Motionbuilder
