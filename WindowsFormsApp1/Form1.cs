@@ -338,7 +338,7 @@ namespace WindowsFormsApp1
                 hWnd3 = GetForegroundWindow();
                 //hWnd3 = hWnd;
             }
-            else if (cls == "Qt5QWindowIcon" & exe.EndsWith("maya.exe"))
+            else if (title.Contains("Autodesk") & exe.Contains("maya.exe"))
             {
                 //maya
                 if (title.StartsWith("Autodesk Maya"))
