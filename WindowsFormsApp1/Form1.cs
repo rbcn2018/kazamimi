@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
         private static bool winstat = true;
 
 
-    public string SettingUnderWindow(IntPtr hWnd, IntPtr hWnd2, IntPtr hWnd3, string exe, string title)
+    public string SettingUnderWindow(IntPtr hWnd, IntPtr hWnd2, IntPtr hWnd3, string exe)//, string title
         {
             //label9.Text = hWnd3.ToString();
             bool ctl_stat = (ModifierKeys & Keys.Control) == Keys.Control;
@@ -120,7 +120,7 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-                if (exe.EndsWith("iexplore.exe"))
+                else if (exe.EndsWith("iexplore.exe"))
                 {
                     //IE
                     if (MouseButtons == MouseButtons.Middle)
@@ -338,19 +338,10 @@ namespace WindowsFormsApp1
                 hWnd3 = GetForegroundWindow();
                 //hWnd3 = hWnd;
             }
-            else if (title.Contains("Autodesk") & exe.Contains("maya.exe"))
+            else if (title.Contains("untitled") & exe.Contains("maya.exe"))
             {
-                //maya
-                if (title.StartsWith("Autodesk Maya"))
-                {
-                    //メインウィンドウ
-                    hWnd2 = hWnd;
-                }
-                else
-                {
-                    hWnd3 = GetForegroundWindow();
-                    //hWnd3 = hWnd;
-                }
+                //maya メインウィンドウ Autodesk
+                hWnd2 = hWnd;
             }
             else if (cls == "Notepad" & exe.EndsWith("notepad.exe"))
             {
@@ -390,7 +381,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-            SettingUnderWindow(hWnd, hWnd2, hWnd3, exe, title);
+            SettingUnderWindow(hWnd, hWnd2, hWnd3, exe);//, title
         }
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
